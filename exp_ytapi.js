@@ -8,13 +8,6 @@ var check = require('express-validator').check;
 var valiResult = require('express-validator').validationResult;
 var mysql = require('mysql');
 
-var con = mysql.createConnection({
-	host:'localhost',
-	user:'monty',
-	password:'fullmonty',
-	database: 'firstdb'
-
-});
 
 
 
