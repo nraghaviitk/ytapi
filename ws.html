@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+body	{background-color:black;}
+h2 	{color	: white;}
+p 	{color	: white;}
+.gridcontainer{
+display	:grid;
+background-color:black;
+grid-template-columns:auto auto;
+grid-gap :10px;
+padding : 10px
+}
+.grid-item {
+  background-color: seagreen;
+  text-align: center;
+  padding: 20px;
+  font-size: 30px;
+}
+.item1 {
+  grid-column: 1 ;
+  grid-row: 1;
+}
+
+.item2 {
+  grid-column:2;
+  grid-row: 1 ;
+}
+
+.item3 {
+  grid-column: 1;
+  grid-row: 2;
+}
+.item4 {
+  grid-column:2;
+  grid-row: 2 ;
+}
+.item5 {
+  grid-column:1;
+  grid-row: 3 ;
+}
+</style>
+</head>
+<body>
+<h2 id = "h2">The XMLHttpRequest Object</h2>
+<button type="button" onclick="loadDoc()">Request data</button>
+
+<p id="demo">demo</p>
+	<div class="gridcontainer">
+		<div class="grid-item item1">
+			<p id ="text1">text1</p>
+		<iframe id="f1" width="500" height="200"  src="https://www.youtube.com/embed/ahCfF_esPl8">
+		</iframe>
+		</div>
+		<div class="grid-item item2">
+			<p id ="text2">text2</p>
+		<iframe id="f2" width="300" height = "200"  src="https://www.youtube.com/embed/ahCfF_esPl8">
+		</iframe>
+		</div>
+		<div class="grid-item item3">
+			<p id ="text3">text3</p>
+		<iframe id="f3"  src="https://www.youtube.com/embed/ahCfF_esPl8">
+</iframe>
+</div>
+		<div class="grid-item item4">
+			<p id ="text4">text4</p>
+<iframe id="f4" src="https://www.youtube.com/embed/ahCfF_esPl8">
+</iframe>
+</div>
+		<div class="grid-item item5">
+			<p id ="text5">text5</p>
+<iframe id="f5" src="https://www.youtube.com/embed/ahCfF_esPl8">
+</iframe>
+</div>
+		<div class="grid-item item6">
+			<p id ="text6">text6</p>
+<iframe id="f6" src="https://www.youtube.com/embed/ahCfF_esPl8">
+</iframe>
+</div>
+</div>
+</body>
+<script>
+function loadDoc() {
+  const xhttp = new XMLHttpRequest();
+  xhttp.onload = function() {
+	 const resparse=JSON.parse(this.responseText);
+    document.getElementById("demo").innerHTML = "https://youtube.com/embed/"+resparse[1].trim();
+	  for(i=1;i<7;i++){
+	  textv="text"+i;
+	  fv="f"+i;  
+	  document.getElementById(textv).innerHTML=resparse[2*i-2];
+	  document.getElementById(fv).src= "https://youtube.com/embed/"+resparse[2*i-1].trim();}
+
+	  document.getElementById("h2").innerHTML=textv;
+  };
+
+  xhttp.open("GET", "demo_get.asp?t=" + Math.random());
+  xhttp.send();
+}
+</script>
+</html>
